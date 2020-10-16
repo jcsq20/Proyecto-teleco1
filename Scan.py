@@ -36,3 +36,43 @@ class MainWindow(QMainWindow):
                         y=interfaz[i].split()
                         tarjetaRed=y[0]
         return tarjetaRed
+
+    #Metodo de Escaner de las redes wifi
+    def buscar(self, event):
+        tarjetaRed = self.detectar()
+        bandera =True
+        canal.clear()
+        señal.clear()
+        while bandera:
+            print(bandera)
+            if not (canal):
+                ssid = subprocess.getoutput("sudo iwlist "+tarjetaRed+" scan |egrep 'ESSID|Frequency|Channel|Signal'")
+                row=ssid.splitlines()
+                aux=[]
+                auxFreq=[]
+                for j in range(len(row)):
+                        if j*4+3<len(row):
+                                aux=row[j*4].split(":")
+                                canal.append(int(aux[1]))
+
+                                aux=row[j*4+1].split()
+                                auxFreq=aux[0].split(":")
+                                frecuencia.append(auxFreq[1])
+
+                                aux=row[j*4+2].split("level=")
+                                auxFreq=aux[1].split()
+                                señal.append(int(auxFreq[0]))
+
+                                aux=row[j*4+3].split(":")
+                                essid.append(aux[1])
+                f = open ('escanWifi.txt','w')
+                for c in range(len(canal)):
+                        f.write("ESSID: "+str(essid[c])+', Frecuencia: '+str(frecuencia[c])+', Signal frecuecy: '+str(señal[c])+' dbm, Canal: '+str(canal[c])+'\n')
+                f.close()
+            else:
+                bandera = False
+        print("Fin de deteccion")
+
+        self.señal.axes.cla()
+        self.graficar()
+        self.señal.draw_idle()
