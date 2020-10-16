@@ -87,3 +87,16 @@ class MainWindow(QMainWindow):
             #self.señal.axes.legend(str(señal[i]))
             self.señal.axes.legend(essid, loc="upper right",fancybox=True, framealpha=0.5)
         print("Fin pintada")
+
+    def __init__(self, *args, **kwargs):
+        super(MainWindow, self).__init__(*args, **kwargs)
+
+        # Creamos la organización de la ventana
+        self.layout = QGridLayout()
+        # Gráfica de los datos scan
+        self.lseñal = QLabel()
+        self.lseñal.setText("Scan")
+        self.layout.addWidget(self.lseñal, 0, 0, 1, 2)
+        self.señal = MplCanvas(self, width=14, height=7)
+        self.layout.setRowStretch(1,6)
+        self.layout.addWidget(self.señal, 1, 0, 1, 2)
