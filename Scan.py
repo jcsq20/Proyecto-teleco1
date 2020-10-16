@@ -76,3 +76,14 @@ class MainWindow(QMainWindow):
         self.señal.axes.cla()
         self.graficar()
         self.señal.draw_idle()
+
+    def graficar(self):
+            #print(canal)
+        for i, x in enumerate(canal):
+            #print(i)
+            limplot = lim+x
+            sinplot = ((señal[i]+100)*si)-100
+            self.señal.axes.plot(limplot, sinplot)
+            #self.señal.axes.legend(str(señal[i]))
+            self.señal.axes.legend(essid, loc="upper right",fancybox=True, framealpha=0.5)
+        print("Fin pintada")
