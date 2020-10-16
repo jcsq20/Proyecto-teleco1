@@ -25,3 +25,14 @@ class MainWindow(QMainWindow):
     #Metodo de salir entorno grafico
     def salir(self):
         sys.exit()
+    
+    #Metodo que identifa la tarjeta de red de mi pc
+    def detectar(self):
+        var=subprocess.getoutput('iwconfig')
+        interfaz=var.splitlines()
+        tarjetaRed=""
+        for i in range(len(interfaz)):
+                if interfaz[i].find("w", 0, 1)==0:
+                        y=interfaz[i].split()
+                        tarjetaRed=y[0]
+        return tarjetaRed
