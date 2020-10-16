@@ -100,3 +100,17 @@ class MainWindow(QMainWindow):
         self.señal = MplCanvas(self, width=14, height=7)
         self.layout.setRowStretch(1,6)
         self.layout.addWidget(self.señal, 1, 0, 1, 2)
+
+        #Creamos el boton scan
+        self.bexit = QPushButton()
+        self.bexit.setText('Scan')
+        self.bexit.setFixedSize(70, 35)
+        self.bexit.clicked.connect(self.buscar)
+        self.layout.addWidget(self.bexit, 2, 0, 1, 1)
+
+        #Creamos el boton salir
+        self.brecord = QPushButton()
+        self.brecord.setText('Salir')
+        self.brecord.setFixedSize(70, 35)
+        self.brecord.clicked.connect(self.salir)
+        self.layout.addWidget(self.brecord, 2, 1, 1, 1)
