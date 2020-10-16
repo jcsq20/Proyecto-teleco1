@@ -114,3 +114,25 @@ class MainWindow(QMainWindow):
         self.brecord.setFixedSize(70, 35)
         self.brecord.clicked.connect(self.salir)
         self.layout.addWidget(self.brecord, 2, 1, 1, 1)
+
+        #texto
+        tar = self.detectar()
+        self.lvar = QLabel()
+        self.lvar.setText("Nombre de la tarjeta Wifi: "+str(tar))
+        self.layout.addWidget(self.lvar, 3, 0, 1, 2)
+
+        #pintar
+        self.widget = QWidget()
+        self.setFixedSize(1270, 850)
+        self.layout.setContentsMargins(0,0,0,0)
+        self.layout.setColumnMinimumWidth(0,1100)
+        self.layout.setColumnMinimumWidth(1,100)
+        self.widget.setLayout(self.layout)
+        self.setCentralWidget(self.widget)
+        
+
+        self.show()
+
+app = QApplication([])
+w = MainWindow()
+app.exec_()
