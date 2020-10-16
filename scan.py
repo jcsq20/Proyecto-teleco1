@@ -46,7 +46,7 @@ class MainWindow(QMainWindow):
         while bandera:
             print(bandera)
             if not (canal):
-                ssid = subprocess.getoutput("sudo iwlist "+tarjetaRed+" scan |egrep 'ESSID|Frequency|Channel|Signal'")
+                ssid = subprocess.getoutput("iwlist "+tarjetaRed+" scan |egrep 'ESSID|Frequency|Channel|Signal'")
                 row=ssid.splitlines()
                 aux=[]
                 auxFreq=[]
@@ -65,7 +65,7 @@ class MainWindow(QMainWindow):
 
                                 aux=row[j*4+3].split(":")
                                 essid.append(aux[1])
-                f = open ('escanWifi.txt','w')
+                f = open ('RedesDetectadas.txt','w')
                 for c in range(len(canal)):
                         f.write("ESSID: "+str(essid[c])+', Frecuencia: '+str(frecuencia[c])+', Signal frecuecy: '+str(señal[c])+' dbm, Canal: '+str(canal[c])+'\n')
                 f.close()
