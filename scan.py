@@ -11,8 +11,13 @@ canal=[]
 frecuencia =[]
 señal=[]
 essid=[]
+
+#creacion vector (inicio, fin, paso)
 lim = np.arange(-0.5,0.5,0.001)
+#Devuelve números espaciados uniformemente durante un intervalo especificado.
+#primer-numero,ultimon-numero,numero de muestras
 l = np.linspace(0,np.pi,len(lim))
+#funcion seno
 si = np.sin(l)
 
 class MplCanvas(fc):
